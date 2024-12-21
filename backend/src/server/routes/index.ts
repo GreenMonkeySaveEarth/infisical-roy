@@ -231,6 +231,8 @@ import { registerSecretScannerGhApp } from "../plugins/secret-scanner";
 import { registerV1Routes } from "./v1";
 import { registerV2Routes } from "./v2";
 import { registerV3Routes } from "./v3";
+import { userSecretDALFactory } from "@app/services/user-secret/user-secret-dal";
+import { userSecretServiceFactory } from "@app/services/user-secret/user-secret-service";
 
 export const registerRoutes = async (
   server: FastifyZodProvider,
@@ -351,6 +353,7 @@ export const registerRoutes = async (
   const userGroupMembershipDAL = userGroupMembershipDALFactory(db);
   const secretScanningDAL = secretScanningDALFactory(db);
   const secretSharingDAL = secretSharingDALFactory(db);
+  const userSecretDAL = userSecretDALFactory(db);
   const licenseDAL = licenseDALFactory(db);
   const dynamicSecretDAL = dynamicSecretDALFactory(db);
   const dynamicSecretLeaseDAL = dynamicSecretLeaseDALFactory(db);
@@ -1038,6 +1041,9 @@ export const registerRoutes = async (
     kmsService
   });
 
+  const userSecretService = userSecretServiceFactory({
+    userSecretDAL,
+  });
   const accessApprovalPolicyService = accessApprovalPolicyServiceFactory({
     accessApprovalPolicyDAL,
     accessApprovalPolicyApproverDAL,
@@ -1448,6 +1454,7 @@ export const registerRoutes = async (
     identityProjectAdditionalPrivilege: identityProjectAdditionalPrivilegeService,
     identityProjectAdditionalPrivilegeV2: identityProjectAdditionalPrivilegeV2Service,
     secretSharing: secretSharingService,
+    userSecret: userSecretService,
     userEngagement: userEngagementService,
     externalKms: externalKmsService,
     hsm: hsmService,
