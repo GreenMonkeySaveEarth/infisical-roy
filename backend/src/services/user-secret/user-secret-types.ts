@@ -4,11 +4,15 @@ export type TGetUserSecretsDTO = {
   orgId: string;
 } & TGenericPermission;
 
+export type TUserSecretPermission = {
+  actorId: string;
+  orgId: string;
+};
+
 export type TCreateUserSecretDTO = {
   name: string,
   password: string,
-  orgId: string;
-}
+} & TUserSecretPermission;
 
 export type TUpdateUserSecretDTO = {
   userSecretId: string;

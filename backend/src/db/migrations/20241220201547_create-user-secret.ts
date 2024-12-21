@@ -8,7 +8,9 @@ export async function up(knex: Knex): Promise<void> {
 				t.uuid("id", { primaryKey: true }).defaultTo(knex.fn.uuid());
 				t.string("name").notNullable();
 				t.text("password").notNullable();
+				t.uuid("userId").notNullable();
 				t.uuid("orgId").notNullable();
+				t.foreign("userId").references("id").inTable(TableName.Users).onDelete("CASCADE");
 				t.foreign("orgId").references("id").inTable(TableName.Organization).onDelete("CASCADE");
 				t.timestamps(true, true, true);
 			});

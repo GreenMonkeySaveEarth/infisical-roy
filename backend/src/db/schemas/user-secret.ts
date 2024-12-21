@@ -16,6 +16,7 @@ export const UserSecretSchema = z.object({
 	id: z.string().uuid(),
 	name: z.string(),
 	password: z.string(),
+	userId: z.string().uuid(),
 	orgId: z.string().uuid(),
 });
 

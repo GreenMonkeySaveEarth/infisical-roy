@@ -55,6 +55,7 @@ export const registerUserSecretRouter = async (server: FastifyZodProvider) => {
 			const userSecret = await req.server.services.userSecret.createUserSecret({
 				name,
 				password,
+				actorId: req.permission.id,
 				orgId: req.permission.orgId
 			});
 			return userSecret

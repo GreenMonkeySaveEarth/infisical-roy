@@ -28,12 +28,14 @@ export const userSecretServiceFactory = ({
 	const createUserSecret = async ({
 		name,
 		password,
+		actorId,
 		orgId,
 	}: TCreateUserSecretDTO) => {
     const hashedPassword = password ? await bcrypt.hash(password, 10) : null;
 		const newUserSecret = await userSecretDAL.create({
       name,
       password: hashedPassword,
+			userId: actorId,
 			orgId,
     });
 
