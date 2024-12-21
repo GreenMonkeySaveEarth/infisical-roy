@@ -45,6 +45,7 @@ export * from "./subscriptions";
 export * from "./tags";
 export * from "./trustedIps";
 export * from "./users";
+export * from "./userSecret";
 export * from "./webhooks";
 export * from "./workflowIntegrations";
 export * from "./workspace";
