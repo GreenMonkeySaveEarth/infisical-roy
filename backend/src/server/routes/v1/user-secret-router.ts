@@ -24,7 +24,6 @@ export const registerUserSecretRouter = async (server: FastifyZodProvider) => {
 		},
 		onRequest: verifyAuth([AuthMode.JWT]),
 		handler: async (req) => {
-			// todo: need to clean up the params, it depends on the table schema
 			const { secrets } = await req.server.services.userSecret.getUserSecrets({
 				orgId: req.permission.orgId,
 			});

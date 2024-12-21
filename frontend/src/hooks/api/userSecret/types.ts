@@ -1,6 +1,5 @@
 import { SecretSharingAccessType } from "../secretSharing/types";
 
-// Todo: Need to verify the type again if it all needed.
 export type TUserSecret = {
   id: string;
   name: string | null;
